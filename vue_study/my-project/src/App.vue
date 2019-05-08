@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    import TodoItem from  './components/murayamaheader'
+    import TodoItem from  './components/HelloWorld'
 
     export default {
         name: 'TodoList',
