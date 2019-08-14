@@ -34,33 +34,23 @@
         el: '#example-1',
         data: {
             counter : 0,
-            elements: {
-                20:'-',
-                19:'-',
-                18:'-',
-                17:'-',
-                16:'-',
-                15:'-',
-                14:'-',
-                13:'-',
-                12:'-',
-                11:'-',
-                10:'-',
-                9:'-',
-                8:'-',
-                7:'-',
-                6:'-',
-                5:'-',
-                4:'-',
-                3:'-',
-                2:'-',
-                1:'-',
-            },
-            number: [20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],
+            elements: {},
+            number: [],
             time : new Date(),
-            beforeNumberTime : '',
-            nextNumber : 20,
-            status: 'practice'
+            beforeNumberTime : null,
+            nextNumber : null,
+            statusList: ['practice', 'reset'],
+            status: null,
+            maxNumber: 20
+        },
+        created: function () {
+          this.status = this.statusList[0]
+          this.nextNumber = this.maxNumber
+          this.number = [...Array(this.maxNumber).keys()].map(i => ++i).reverse()
+          this.number.forEach(v => {
+            this.elements[v] = "-"
+          })
+          console.log(this.elements)
         },
         methods: {
             append: function() {
@@ -70,8 +60,8 @@
                 this.time = new Date();
                 this.counter += 1;
                 this.nextNumber = this.number[this.counter];
-                if(this.counter === 20){
-                    this.status = 'reset'
+                if(this.counter === this.maxNumber){
+                    this.status = this.statusList[1]
                 }
             },
             reset: function(){
