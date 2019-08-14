@@ -3,21 +3,22 @@
     <!-- Vue.js -->
     <script src="https://npmcdn.com/vue/dist/vue.js"></script>
 </head>
+<body>
 <div id="example-1">
     <table class="table table-striped">
         <thead>
-            <tr>
-                <th>Number</th>
-                <th>クリアするまでかかった秒数</th>
-            </tr>
+        <tr>
+            <th>Number</th>
+            <th>クリアするまでかかった秒数</th>
+        </tr>
         </thead>
         <tbody>
-            <!-- 各要素を表示 -->
-            <tr v-for="(elem, index) in elements">
-                <td>{{ index }}</td>
-                <td>{{ elem }}秒</td>
-                <!-- クリックして要素を削除 -->
-            </tr>
+        <!-- 各要素を表示 -->
+        <tr v-for="(elem, index) in elements">
+            <td>{{ index }}</td>
+            <td>{{ elem }}秒</td>
+            <!-- クリックして要素を削除 -->
+        </tr>
         </tbody>
     </table>
     <template v-if="this.status === 'practice'">
@@ -28,58 +29,56 @@
         <button v-on:click="reset()">Reset</button>
     </template>
 </div>
-
 <script type="text/javascript">
-var example1 = new Vue({
-  el: '#example-1',
-  data: {
-      counter : 0,
-      elements: {
-          20:'-',
-          19:'-',
-          18:'-',
-          17:'-',
-          16:'-',
-          15:'-',
-          14:'-',
-          13:'-',
-          12:'-',
-          11:'-',
-          10:'-',
-          9:'-',
-          8:'-',
-          7:'-',
-          6:'-',
-          5:'-',
-          4:'-',
-          3:'-',
-          2:'-',
-          1:'-',
-      },
-      number: [20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],
-      time : new Date(),
-      beforeNumberTime : '',
-      nextNumber : 20,
-      status: 'practice'
-  },
-  methods: {
-      append: function() {
-          //前回実行時の時間から引き算
-            this.elements[this.number[this.counter]] = Math.floor((new Date() - this.time) / (1000));
-            //クリック時の現在の時刻を格納
-            this.time = new Date();
-            this.counter += 1;
-          this.nextNumber = this.number[this.counter];
-
-          if(this.counter === 20){
-                  this.status = 'reset'
-                }
+    var example1 = new Vue({
+        el: '#example-1',
+        data: {
+            counter : 0,
+            elements: {
+                20:'-',
+                19:'-',
+                18:'-',
+                17:'-',
+                16:'-',
+                15:'-',
+                14:'-',
+                13:'-',
+                12:'-',
+                11:'-',
+                10:'-',
+                9:'-',
+                8:'-',
+                7:'-',
+                6:'-',
+                5:'-',
+                4:'-',
+                3:'-',
+                2:'-',
+                1:'-',
+            },
+            number: [20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],
+            time : new Date(),
+            beforeNumberTime : '',
+            nextNumber : 20,
+            status: 'practice'
         },
-          reset: function(){
-              location.reload();
-          }
-  }
-})
+        methods: {
+            append: function() {
+                //前回実行時の時間から引き算
+                this.elements[this.number[this.counter]] = Math.floor((new Date() - this.time) / (1000));
+                // クリック時の現在の時刻を格納
+                this.time = new Date();
+                this.counter += 1;
+                this.nextNumber = this.number[this.counter];
+                if(this.counter === 20){
+                    this.status = 'reset'
+                }
+            },
+            reset: function(){
+                location.reload();
+            }
+        }
+    })
 </script>
 </body>
 </html>
